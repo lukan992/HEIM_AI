@@ -1,0 +1,672 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>heim. — AI, который приносит измеримый эффект</title>
+    <link rel="stylesheet" href="styles.css" />
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="180x180" href="favicon-180.png">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+<header class="header">
+    <div class="container header-inner">
+        <div class="logo">heim<span class="logo-dot">.</span></div>
+        <nav class="nav" aria-label="Главное меню">
+            <a href="#services" class="nav-link">Услуги</a>
+            <a href="#impact" class="nav-link">Задачи</a>
+            <a href="#cases" class="nav-link">Кейсы</a>
+            <a href="#process" class="nav-link">Процесс</a>
+            <a href="#calculator" class="nav-link">Калькулятор</a>
+            <a href="#tech" class="nav-link">Технологии</a>
+            <a href="#pricing" class="nav-link">Цены</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+        </nav>
+        <div class="header-actions">
+            <a href="#meeting" class="btn btn-primary">Получить консультацию</a>
+            <a href="#contacts" class="btn btn-ghost">Контакты</a>
+        </div>
+        <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<div class="nav-overlay" id="nav-overlay" hidden></div>
+<nav class="mobile-nav" id="mobile-nav" aria-label="Мобильное меню" hidden>
+    <a href="#services">Услуги</a>
+    <a href="#impact">Задачи</a>
+    <a href="#cases">Кейсы</a>
+    <a href="#process">Процесс</a>
+    <a href="#calculator">Калькулятор</a>
+    <a href="#tech">Технологии</a>
+    <a href="#pricing">Цены</a>
+    <a href="#faq">FAQ</a>
+    <a href="#meeting">Получить консультацию</a>
+    <a href="#contacts">Контакты</a>
+</nav>
+
+<div class="dna-bar" id="dna-bar">
+    <canvas id="dnaCanvas"></canvas>
+    <div class="dna-mark">heim<span class="logo-dot">.</span></div>
+</div>
+
+<main>
+    <!-- Hero: максимально минималистичный -->
+    <section class="hero" id="top">
+        <div class="container hero-inner reveal">
+            <div class="hero-content">
+                <p class="eyebrow">ИИ ДЛЯ КОНКРЕТНЫХ БИЗНЕС-ПРОЦЕССОВ</p>
+                <h1>Искусственный интеллект — ваш верный помощник в самых больных задачах</h1>
+                <p class="hero-subtitle">Запускаем рабочий прототип за 2–4 недели. Гарантируем измеримые метрики.</p>
+                <div class="hero-actions">
+                    <a href="#meeting" class="btn btn-primary hero-btn">Обсудить задачу</a>
+                    <a href="#calculator" class="btn btn-ghost hero-btn">Рассчитать эффект</a>
+                </div>
+                <div class="hero-status hero-status--chips hero-status--large">
+                    <span class="chip-dot">30–90 дней до эффекта</span>
+                    <span>80+ реализованных проектов</span>
+                    <span>12 стран и 8 отраслей</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Дополнительный отступ-блок между хиро и следующим разделом -->
+    <section class="section section-gap" aria-hidden="true">
+        <div class="container section-gap-inner"></div>
+    </section>
+
+    <!-- Impact: где ИИ даёт быстрый эффект -->
+    <section class="section section-alt" id="impact">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Где ИИ даёт быстрый эффект</h2>
+                <p>1–2 зоны, где эффект можно посчитать за несколько месяцев.</p>
+            </div>
+            <div class="cards-grid cards-grid-3 reveal">
+                <article class="card card-compact card-hover">
+                    <h3>Саппорт</h3>
+                    <p class="muted">Помогаем отвечать клиентам быстрее: часть вопросов закрывается автоматически, сложные — с подсказками для операторов.</p>
+                </article>
+                <article class="card card-compact card-hover">
+                    <h3>Риск-контур</h3>
+                    <p class="muted">Замечаем подозрительные операции и заявки до потерь и не мешаем честным клиентам.</p>
+                </article>
+                <article class="card card-compact card-hover">
+                    <h3>Продажи</h3>
+                    <p class="muted">Помогаем менеджеру понять, что предложить клиенту и когда вернуться к диалогу.</p>
+                </article>
+                <article class="card card-compact card-hover">
+                    <h3>Документы</h3>
+                    <p class="muted">Снимаем рутину по договорам, заявкам и актам: читаем документы и передаём их дальше по процессу.</p>
+                </article>
+                <article class="card card-compact card-hover">
+                    <h3>ТОиР</h3>
+                    <p class="muted">Раньше замечаем признаки возможной поломки, чтобы заранее планировать остановки.</p>
+                </article>
+                <article class="card card-compact card-hover">
+                    <h3>Операционная аналитика</h3>
+                    <p class="muted">Даем руководителям быстрые ответы по данным без ожидания аналитиков.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services: продукты -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Готовые AI-продукты под задачи</h2>
+                <p>Пять типов решений, которые можно быстро запустить и масштабировать.</p>
+            </div>
+            <div class="cards-grid cards-grid-3 reveal">
+                <article class="card card-compact card-hover service-card">
+                    <h3>AI-ассистент для саппорта / продаж</h3>
+                    <p>«Умный помощник» рядом с оператором или менеджером, подсказывающий ответы и следующий шаг.</p>
+                    <button class="service-toggle" type="button">Подробнее</button>
+                    <div class="service-more">
+                        <p class="muted">Собираем ассистента на базе ваших данных и регламентов и подключаем его к вашим системам.</p>
+                        <p class="card-metric">Цели: отвечать быстрее и больше вопросов закрывать без участия человека.</p>
+                    </div>
+                </article>
+                <article class="card card-compact card-hover service-card">
+                    <h3>Антифрод и риск-скоринг</h3>
+                    <p>Система, которая в онлайне оценивает операции и заявки на риск мошенничества.</p>
+                    <button class="service-toggle" type="button">Подробнее</button>
+                    <div class="service-more">
+                        <p class="muted">Используем ваши исторические данные, чтобы отличать обычное поведение клиентов от рискованного.</p>
+                        <p class="card-metric">Цели: меньше потерь от фрода и разумное число дополнительных проверок.</p>
+                    </div>
+                </article>
+                <article class="card card-compact card-hover service-card">
+                    <h3>Предиктивное обслуживание (ТОиР)</h3>
+                    <p>Система, которая по данным датчиков подсказывает, когда оборудование стоит обслужить.</p>
+                    <button class="service-toggle" type="button">Подробнее</button>
+                    <div class="service-more">
+                        <p class="muted">Опираемся на ваши данные по поломкам и режимам работы, а не на абстрактную теорию.</p>
+                        <p class="card-metric">Цели: меньше аварийных простоев и понятный график ремонтов.</p>
+                    </div>
+                </article>
+                <article class="card card-compact card-hover service-card">
+                    <h3>Автоматизация документооборота</h3>
+                    <p>Решение, которое «читает» документы, достаёт нужные поля и проверяет корректность.</p>
+                    <button class="service-toggle" type="button">Подробнее</button>
+                    <div class="service-more">
+                        <p class="muted">Строим путь от входящего документа до нужной системы: распознавание, проверки и маршрутизация.</p>
+                        <p class="card-metric">Цели: меньше ручного ввода и быстрее прохождение заявки или договора.</p>
+                    </div>
+                </article>
+                <article class="card card-compact card-hover service-card">
+                    <h3>Операционная аналитика</h3>
+                    <p>Инструмент, который позволяет задавать вопросы о бизнесе обычным языком и получать ответы по данным.</p>
+                    <button class="service-toggle" type="button">Подробнее</button>
+                    <div class="service-more">
+                        <p class="muted">Подключаемся к вашим хранилищам данных и отчётам и настраиваем безопасный слой доступа.</p>
+                        <p class="card-metric">Цели: быстрее принимать решения и меньше отвлекать аналитиков.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <!-- Soft CTA after services -->
+    <section class="section section-alt cta-soft" id="cta-after-services">
+        <div class="container split reveal">
+            <div>
+                <h2 class="cta-soft-title">Посмотрим, какой продукт подойдёт под ваш процесс</h2>
+                <p class="muted">Коротко разберём текущую ситуацию и предложим 1–2 варианта запуска без лишней теории.</p>
+            </div>
+            <div class="split-box cta-soft-box">
+                <p class="muted">Расскажите, какой процесс хотите улучшить — вернёмся с предложением формата и времени созвона.</p>
+                <a href="#meeting" class="btn btn-primary btn-full">Обсудить задачу</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Problems / fit -->
+    <section class="section section-alt" id="problems">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Подходит, если у вас…</h2>
+            </div>
+            <div class="cards-grid cards-grid-3 reveal">
+                <article class="card card-compact card-hover">
+                    <h3>Массовый процесс</h3>
+                    <p class="muted">
+                        Саппорт, проверки, ввод данных, сверки — однотипные задачи каждый день.
+                    </p>
+                </article>
+                <article class="card card-compact card-hover">
+                    <h3>Заметные косты</h3>
+                    <p class="muted">
+                        В процессе заняты ≥ 5–10 человек или ошибка/фрод/простой стоит дорого.
+                    </p>
+                </article>
+                <article class="card card-compact card-hover">
+                    <h3>Есть данные</h3>
+                    <p class="muted">
+                        Логи, транзакции, тикеты, документы, метаданные — есть с чем работать.
+                    </p>
+                </article>
+            </div>
+            <div class="fit-note reveal">
+                <div>
+                    <h3>Когда мы скажем «нет»</h3>
+                    <p class="muted">
+                        Задачи штучные, данных мало или ИИ не лучше простых правил — честно не запускаем.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator -->
+    <section class="section" id="calculator">
+        <canvas id="dnaLinesBg" class="dna-bg" aria-hidden="true"></canvas>
+        <div class="container split split-calculator reveal">
+            <div>
+                <div class="section-header small-gap">
+                    <h2>Калькулятор полезности</h2>
+                    <p>Прикиньте экономию и срок окупаемости до созвона.</p>
+                </div>
+                <ul class="list list-compact">
+                    <li>Сколько людей и времени сейчас тратится на процесс.</li>
+                    <li>Какую долю задач реально можно автоматизировать.</li>
+                    <li>Какой бюджет вы готовы вложить в прототип и внедрение.</li>
+                </ul>
+            </div>
+            <div class="split-box calc-box">
+                <form class="form" id="effect-form">
+                    <div class="form-grid">
+                        <label class="field">
+                            <span>Сотрудников в процессе, N</span>
+                            <input type="number" id="input-n" value="10" min="1" inputmode="numeric" pattern="[0-9]*" placeholder="Сколько человек участвуют в процессе" />
+                            <span class="field-hint">Сколько сотрудников сейчас задействовано в этом процессе.</span>
+                        </label>
+                        <label class="field">
+                            <span>Ставка, ₽/час, S</span>
+                            <input type="number" id="input-s" value="800" min="1" step="50" inputmode="decimal" placeholder="Средняя стоимость часа одного сотрудника" />
+                            <span class="field-hint">Средняя стоимость рабочего часа с учётом налогов и взносов.</span>
+                        </label>
+                        <label class="field">
+                            <span>Время на задачу, мин, T</span>
+                            <input type="number" id="input-t" value="8" min="1" inputmode="numeric" pattern="[0-9]*" placeholder="Сколько минут уходит на одну задачу" />
+                            <span class="field-hint">Сколько минут тратит один сотрудник на одну задачу.</span>
+                        </label>
+                        <label class="field">
+                            <span>Задач в месяц, M</span>
+                            <input type="number" id="input-m" value="12000" min="1" inputmode="numeric" pattern="[0-9]*" placeholder="Сколько задач проходит через процесс за месяц" />
+                            <span class="field-hint">Общий объём задач, заявок или обращений в месяц.</span>
+                        </label>
+                        <label class="field">
+                            <span>Автоматизируемая доля, A, %</span>
+                            <input type="number" id="input-a" value="40" min="1" max="100" inputmode="decimal" placeholder="Реалистичная доля задач для автоматизации" />
+                            <span class="field-hint">Реалистичная доля задач, которые можно автоматизировать.</span>
+                        </label>
+                        <label class="field">
+                            <span>Прототип, ₽</span>
+                            <input type="number" id="input-proto" value="1500000" min="0" step="50000" inputmode="decimal" placeholder="Разовый бюджет на прототип" />
+                            <span class="field-hint">Разовый бюджет на сборку первого рабочего прототипа.</span>
+                        </label>
+                        <label class="field">
+                            <span>Внедрение, ₽</span>
+                            <input type="number" id="input-impl" value="7000000" min="0" step="50000" inputmode="decimal" placeholder="Разовый бюджет на внедрение" />
+                            <span class="field-hint">Разовый бюджет на интеграцию и запуск решения в прод.</span>
+                        </label>
+                    </div>
+                    <button type="button" id="calc-button" class="btn btn-primary btn-full">
+                        Посчитать эффект
+                    </button>
+                </form>
+                <div class="calc-results" id="calc-results">
+                    <div class="calc-result-card">
+                        <span class="calc-label">Текущие затраты в месяц</span>
+                        <span class="calc-value" id="cost-now">—</span>
+                    </div>
+                    <div class="calc-result-card">
+                        <span class="calc-label">Затраты после автоматизации</span>
+                        <span class="calc-value" id="cost-new">—</span>
+                    </div>
+                    <div class="calc-result-row">
+                        <div class="calc-result-card">
+                            <span class="calc-label">Экономия в месяц</span>
+                            <span class="calc-value accent" id="saving-month">—</span>
+                        </div>
+                        <div class="calc-result-card">
+                            <span class="calc-label">Окупаемость, месяцев</span>
+                            <span class="calc-value" id="payback">—</span>
+                        </div>
+                    </div>
+                    <p class="muted calc-note">
+                        На диагностике считаем модель детальнее и фиксируем метрики, которые будем защищать на пилоте.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise -->
+    <section class="section section-alt" id="expertise">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Где у нас сильная экспертиза</h2>
+            </div>
+            <div class="cards-grid cards-grid-4 reveal">
+                <article class="card card-compact card-hover">
+                    <h3>E-commerce</h3>
+                    <ul class="list list-compact">
+                        <li>Поддержка клиентов: ответы на типовые вопросы без участия людей.</li>
+                        <li>Продажи: подсказки, что и когда предложить покупателю.</li>
+                        <li>Фокус: скорость ответа и доля заказов.</li>
+                    </ul>
+                </article>
+                <article class="card card-compact card-hover">
+                    <h3>Финансы</h3>
+                    <ul class="list list-compact">
+                        <li>Поиск мошеннических операций и заявок.</li>
+                        <li>Оценка рисков по клиентам и продуктам.</li>
+                        <li>Фокус: снижение потерь и комфортный опыт клиентов.</li>
+                    </ul>
+                </article>
+                <article class="card card-compact card-hover">
+                    <h3>Производство и логистика</h3>
+                    <ul class="list list-compact">
+                        <li>Предупреждение поломок и сбоев в работе оборудования.</li>
+                        <li>Оптимизация маршрутов и загрузки транспорта.</li>
+                        <li>Фокус: меньше простоев и задержек.</li>
+                    </ul>
+                </article>
+                <article class="card card-compact card-hover">
+                    <h3>B2B-сервисы / SaaS</h3>
+                    <ul class="list list-compact">
+                        <li>Обработка входящих запросов и документов без лишней ручной работы.</li>
+                        <li>Помощники для клиентов и аккаунт-менеджеров внутри личных кабинетов и CRM.</li>
+                        <li>Фокус: короче цикл сделки и выше удовлетворённость.</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases -->
+    <section class="section" id="cases">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Кейсы в цифрах</h2>
+                <p>Коротко: какой процесс, что сделали, какой эффект.</p>
+            </div>
+            <div class="cards-grid cards-grid-3 reveal">
+                <article class="card case-card card-hover">
+                    <p class="case-tag">E-commerce • Саппорт</p>
+                    <h3>−65% времени ответа в сезон</h3>
+                    <ul class="list list-compact">
+                        <li>Запустили помощника для операторов и автоответы на типовые вопросы.</li>
+                        <li>Снизили количество обращений до «живого» сотрудника на 30%.</li>
+                        <li>Сэкономили около 40 млн ₽ в год.</li>
+                    </ul>
+                </article>
+                <article class="card case-card card-hover">
+                    <p class="case-tag">Банк • Антифрод</p>
+                    <h3>−23% фрод-потерь, окупаемость 5 мес.</h3>
+                    <ul class="list list-compact">
+                        <li>Собрали модель, которая проверяет операции и заявки на риск мошенничества в онлайне.</li>
+                        <li>Сократили убытки от фрода на 23% при комфортном опыте клиентов.</li>
+                        <li>Проект окупился примерно за 5 месяцев.</li>
+                    </ul>
+                </article>
+                <article class="card case-card card-hover">
+                    <p class="case-tag">Производство • ТОиР</p>
+                    <h3>−18% простоев оборудования</h3>
+                    <ul class="list list-compact">
+                        <li>Научили систему замечать ранние признаки возможных отказов.</li>
+                        <li>Сократили незапланированные простои на 18%.</li>
+                        <li>Пилот занял около 8 недель от старта до результатов.</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+    <!-- Soft CTA after cases -->
+    <section class="section cta-soft" id="cta-after-cases">
+        <div class="container split reveal">
+            <div>
+                <h2 class="cta-soft-title">Хотите похожие цифры у себя?</h2>
+                <p class="muted">Разберём ваш процесс, прикинем порядок эффекта и поймём, есть ли смысл в пилоте.</p>
+            </div>
+            <div class="split-box cta-soft-box">
+                <div class="cta-soft-actions">
+                    <a href="#calculator" class="btn btn-secondary btn-full">Прикинуть эффект по калькулятору</a>
+                    <a href="#meeting" class="btn btn-ghost btn-full">Назначить встречу</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Process -->
+    <section class="section section-alt" id="process">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Как идёт проект</h2>
+                <p>Чёткий процесс от диагностики до масштабирования.</p>
+            </div>
+            <ol class="timeline reveal">
+                <li class="timeline-item">
+                    <div class="timeline-badge">1</div>
+                    <div class="timeline-content">
+                        <h3>Диагностика (1–2 недели)</h3>
+                        <ul class="list list-compact">
+                            <li>Проводим онлайн-встречи с ключевыми людьми и описываем текущий процесс.</li>
+                            <li>Собираем примеры данных: обращения, операции, документы.</li>
+                            <li>Оцениваем порядок эффекта и договариваемся, какие цифры считать успехом.</li>
+                            <li>Создаём общий рабочий канал (мессенджер или email) для связи.</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <div class="timeline-badge">2</div>
+                    <div class="timeline-content">
+                        <h3>Прототип (2–4 недели)</h3>
+                        <ul class="list list-compact">
+                            <li>На базе ваших данных собираем первую рабочую версию решения.</li>
+                            <li>Разворачиваем тестовый доступ для вашей команды в безопасном окружении.</li>
+                            <li>Проводим демо-сессии онлайн, собираем обратную связь и дорабатываем.</li>
+                            <li>Фиксируем результаты по согласованным показателям качества.</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <div class="timeline-badge">3</div>
+                    <div class="timeline-content">
+                        <h3>Пилот (4–8 недель)</h3>
+                        <ul class="list list-compact">
+                            <li>Встраиваем решение в ваши рабочие системы: CRM, сервис-деск и внутренние порталы.</li>
+                            <li>Настраиваем журналирование, мониторинг и алерты для контроля работы системы.</li>
+                            <li>Договариваемся о формате замеров и регулярно показываем цифры.</li>
+                            <li>Поддерживаем вас через общий канал и регулярные созвоны.</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <div class="timeline-badge">4</div>
+                    <div class="timeline-content">
+                        <h3>Прод и масштабирование</h3>
+                        <ul class="list list-compact">
+                            <li>Оформляем решение как стабильный сервис с понятными зонами ответственности.</li>
+                            <li>Договариваемся по SLA: доступность, время реакции и формат поддержки.</li>
+                            <li>Планируем, куда ещё можно расширить использование решения.</li>
+                            <li>Остаёмся на связи через выделенный канал и регулярные статусы.</li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Tech & Security -->
+    <section class="section" id="tech">
+        <div class="container split reveal">
+            <div>
+                <div class="section-header small-gap">
+                    <h2>Технологии</h2>
+                    <p>Подбираем стек под ваши данные и инфраструктуру.</p>
+                </div>
+                <ul class="list list-compact">
+                    <li><strong>Модели:</strong> LLM, мультимодальные, RAG, Fine-tuning/LoRA, классический ML.</li>
+                    <li><strong>Инфраструктура:</strong> Docker, Kubernetes, KServe/Triton, Prometheus, Grafana.</li>
+                    <li><strong>Данные:</strong> BigQuery, Snowflake, ClickHouse, Postgres, S3/GCS.</li>
+                    <li><strong>Интеграции:</strong> Salesforce, HubSpot, 1C, MS Dynamics, SAP, Oracle, Zendesk,
+                        Jira, ServiceNow, Power BI, Tableau, Looker и собственные API.</li>
+                </ul>
+            </div>
+            <div class="split-box">
+                <h3>Безопасность</h3>
+                <ul class="list list-compact">
+                    <li>Изолированные окружения и минимальные доступы.</li>
+                    <li>Шифрование данных «на диске» и в транзите.</li>
+                    <li>Развёртывание on-prem / в вашем VPC.</li>
+                    <li>Журналирование промптов и действий.</li>
+                    <li>Практики ISO 27001, SOC 2, GDPR (где применимо).</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section section-alt" id="pricing">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Форматы работы и ориентиры стоимости</h2>
+            </div>
+            <div class="pricing-table-wrapper reveal">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Модель</th>
+                            <th>Для чего</th>
+                            <th>Срок</th>
+                            <th>Ориентир, ₽</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Модель">Fixed-price прототип</td>
+                            <td data-label="Для чего">Проверка ценности на ваших данных</td>
+                            <td data-label="Срок">2–4 недели</td>
+                            <td data-label="Ориентир, ₽">1.2–2.0 млн</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Модель">T&amp;M внедрение</td>
+                            <td data-label="Для чего">Интеграция и выход в прод</td>
+                            <td data-label="Срок">4–12 недель</td>
+                            <td data-label="Ориентир, ₽">6–12 млн / проект</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Модель">Подписка (поддержка)</td>
+                            <td data-label="Для чего">Мониторинг и развитие продукта</td>
+                            <td data-label="Срок">Месяц</td>
+                            <td data-label="Ориентир, ₽">150–600 тыс./мес.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="muted">
+                    Точные цифры считаем после диагностики, когда понятны данные, SLA и инфраструктура.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meeting + Calendly -->
+    <section class="section" id="meeting">
+        <div class="container split split-meeting reveal">
+            <div>
+                <div class="section-header small-gap">
+                    <h2>Первая встреча 45–60 минут</h2>
+                    <p>Понимаем, есть ли смысл в пилоте и в каком формате.</p>
+                </div>
+                <ol class="list numbered list-compact">
+                    <li>Разбираем процесс и текущие метрики.</li>
+                    <li>Определяем, где ИИ реально даст прирост.</li>
+                    <li>Прикидываем порядок эффектов и окупаемости.</li>
+                    <li>Если видим потенциал — предлагаем формат прототипа и сроки.</li>
+                </ol>
+                <p class="muted">
+                    Если эффекта не будет — честно скажем об этом и не потратим ваше время.
+                </p>
+            </div>
+                        <div class="split-box cta-box">
+                <h3>Оставить заявку</h3>
+                <p class="muted">
+                    Можно просто оставить контакты в форме, а мы предложим варианты времени.
+                </p>
+                <form class="form" id="contact-form">
+                    <div class="form-grid">
+                        <label class="field">
+                            <span>Имя</span>
+                            <input type="text" id="cf-name" placeholder="Как к вам обращаться" />
+                        </label>
+                        <label class="field">
+                            <span>Рабочий email</span>
+                            <input type="email" id="cf-email" placeholder="name@company.com" />
+                        </label>
+                        <label class="field">
+                            <span>Компания</span>
+                            <input type="text" id="cf-company" placeholder="Название компании" />
+                        </label>
+                        <label class="field">
+                            <span>Кратко о задаче</span>
+                            <textarea id="cf-note" rows="3" placeholder="Например: хотим разгрузить саппорт и сократить время ответа."></textarea>
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-full" id="cf-submit">
+                        Отправить заявку
+                    </button>
+                    <p class="form-note">
+                        Отправка формы ни к чему вас не обязывает. Мы вернёмся с предложением формата и времени созвона.
+                    </p>
+                </form>
+            </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- FAQ -->
+    <section class="section section-alt" id="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>FAQ</h2>
+                <p>Коротко отвечаем на частые вопросы.</p>
+            </div>
+            <div class="faq-grid reveal">
+                <details class="faq-item" open>
+                    <summary>Сколько данных нужно для старта?</summary>
+                    <p>
+                        Обычно достаточно логов, обращений, транзакций или документов за 3–6 месяцев.
+                        На диагностике разбираем, что у вас есть, и оцениваем, достаточно ли этого.
+                    </p>
+                </details>
+                <details class="faq-item">
+                    <summary>Можно ли развернуть решение on-prem / в нашем VPC?</summary>
+                    <p>
+                        Да. Поддерживаем развёртывание в вашем VPC или on-prem-кластере с учётом внутренних
+                        требований по безопасности и комплаенсу.
+                    </p>
+                </details>
+                <details class="faq-item">
+                    <summary>Через сколько мы увидим первые цифры по эффекту?</summary>
+                    <p>
+                        Базовый цикл: 2–4 недели на прототип и 4–8 недель на пилот.
+                        Первые подтверждённые метрики — до 90 дней с момента старта.
+                    </p>
+                </details>
+                <details class="faq-item">
+                    <summary>Кто поддерживает решения после запуска?</summary>
+                    <p>
+                        Есть формат подписки: мониторинг, обновление моделей, развитие продукта и поддержка вашей команды.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer" id="contacts">
+    <div class="container footer-inner">
+        <div class="footer-main">
+            <div class="logo footer-logo">heim<span class="logo-dot">.</span></div>
+            <p class="muted footer-text">
+                AI под конкретные бизнес-процессы: саппорт, риск-контур, продажи, документооборот, ТОиР и др.
+            </p>
+        </div>
+        <div class="footer-contacts">
+            <h3>Контакты</h3>
+            <p>Email: <a href="mailto:contact@heim.com"><strong>contact@heim.com</strong></a></p>
+            <p>Телефон: <a href="tel:+70000000000"><strong>+7 (000) 000-00-00</strong></a></p>
+            <p>Встречи: онлайн — по записи</p>
+        </div>
+        <div class="footer-actions">
+            <a href="#meeting" class="btn btn-secondary">Записаться на созвон</a>
+            <a href="mailto:contact@heim.com" class="btn btn-ghost">Написать на email</a>
+        </div>
+    </div>
+    <div class="container footer-bottom">
+        <span>© heim.</span>
+        <a href="#" class="muted link-sm">Политика конфиденциальности</a>
+        <a href="#" class="muted link-sm">Условия</a>
+    </div>
+</footer>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script src="script.js"></script>
+<a href="https://t.me/heim_ai" class="floating-contact" target="_blank" rel="noopener noreferrer">
+    Задать вопрос
+</a>
+
+</body>
+</html>
