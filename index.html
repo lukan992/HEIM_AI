@@ -664,10 +664,59 @@
 </footer>
 
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<script src="script.js"></script>
-<a href="https://t.me/heim_ai" class="floating-contact" target="_blank" rel="noopener noreferrer">
+<div class="modal" id="question-modal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-content">
+        <button class="modal-close" data-close-modal aria-label="Закрыть">×</button>
+        <h3>Задать вопрос</h3>
+        <form class="form" id="question-form">
+            <label class="field">
+                <span>Имя</span>
+                <input type="text" id="q-name" name="name" required placeholder="Как к вам обращаться" />
+            </label>
+            <label class="field">
+                <span>Email</span>
+                <input type="email" id="q-email" name="email" required placeholder="name@company.com" />
+            </label>
+            <label class="field">
+                <span>Компания (опционально)</span>
+                <input type="text" id="q-company" name="company" placeholder="Название компании" />
+            </label>
+            <label class="field">
+                <span>Telegram chat_id (опционально, если хотите ответ в TG)</span>
+                <input type="text" id="q-telegram" name="telegramChatId" placeholder="Например: 123456789" />
+                <span class="field-hint">Чтобы узнать chat_id: напишите нашему боту и скопируйте id из /start ответа</span>
+            </label>
+            <label class="field">
+                <span>Вопрос</span>
+                <textarea id="q-text" name="text" rows="4" required placeholder="Сформулируйте ваш вопрос"></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary btn-full" id="q-submit">Отправить вопрос</button>
+            <p class="form-status" id="q-status" role="status" aria-live="polite"></p>
+        </form>
+    </div>
+</div>
+
+<div class="modal" id="admin-modal" hidden>
+    <div class="modal-backdrop" data-close-admin></div>
+    <div class="modal-content modal-wide">
+        <button class="modal-close" data-close-admin aria-label="Закрыть">×</button>
+        <div class="modal-header">
+            <h3>Ответить на вопрос</h3>
+            <button class="btn btn-secondary btn-sm" id="admin-refresh">Обновить список</button>
+        </div>
+        <div id="admin-list" class="admin-list"></div>
+        <p class="form-status" id="admin-status" role="status" aria-live="polite"></p>
+    </div>
+</div>
+
+<button class="floating-contact" id="open-question" type="button">
     Задать вопрос
-</a>
+</button>
+<button class="floating-admin" id="open-admin" type="button" hidden>
+    Ответить на вопрос
+</button>
+<script src="script.js"></script>
 
 </body>
 </html>

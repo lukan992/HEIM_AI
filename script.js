@@ -412,6 +412,204 @@ document.addEventListener("DOMContentLoaded", () => {
     contactForm.addEventListener("submit", handleContactSubmit);
   }
 
+  // --- Модалка "Задать вопрос" ---
+  const questionModal = document.getElementById("question-modal");
+  const openQuestionBtn = document.getElementById("open-question");
+  const questionForm = document.getElementById("question-form");
+  const qStatus = document.getElementById("q-status");
+  const qSubmit = document.getElementById("q-submit");
+
+  function setQStatus(msg, isError = false) {
+    if (qStatus) {
+      qStatus.textContent = msg;
+      qStatus.classList.toggle("error", isError);
+      qStatus.classList.toggle("success", !isError && Boolean(msg));
+    }
+  }
+
+  function openModal(modal) {
+    if (modal) modal.hidden = false;
+  }
+  function closeModal(modal) {
+    if (modal) modal.hidden = true;
+  }
+
+  if (openQuestionBtn) {
+    openQuestionBtn.addEventListener("click", () => openModal(questionModal));
+  }
+
+  if (questionModal) {
+    questionModal.addEventListener("click", (e) => {
+      const target = e.target;
+      if (target instanceof HTMLElement && target.hasAttribute("data-close-modal")) {
+        closeModal(questionModal);
+      }
+    });
+  }
+
+  if (questionForm) {
+    questionForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      setQStatus("Отправляем...", false);
+      if (qSubmit) {
+        qSubmit.disabled = true;
+      }
+      const payload = {
+        name: (document.getElementById("q-name") || {}).value || "",
+        email: (document.getElementById("q-email") || {}).value || "",
+        company: (document.getElementById("q-company") || {}).value || "",
+        telegramChatId: (document.getElementById("q-telegram") || {}).value || "",
+        text: (document.getElementById("q-text") || {}).value || ""
+      };
+
+      try {
+        const resp = await fetch("/api/questions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok || data.ok === false) {
+          throw new Error(data.error || "Не удалось отправить вопрос");
+        }
+        questionForm.reset();
+        setQStatus("Вопрос отправлен! Мы ответим как можно скорее.", false);
+        setTimeout(() => closeModal(questionModal), 1200);
+      } catch (err) {
+        setQStatus(err.message || "Не удалось отправить вопрос", true);
+      } finally {
+        if (qSubmit) qSubmit.disabled = false;
+      }
+    });
+  }
+
+  // --- Админ-панель для ответов ---
+  const adminBtn = document.getElementById("open-admin");
+  const adminModal = document.getElementById("admin-modal");
+  const adminList = document.getElementById("admin-list");
+  const adminStatus = document.getElementById("admin-status");
+  const adminRefresh = document.getElementById("admin-refresh");
+  const adminMode = new URLSearchParams(window.location.search).get("admin") === "1";
+  const ADMIN_KEY_KEY = "heimAdminKey";
+
+  function setAdminStatus(msg, isError = false) {
+    if (adminStatus) {
+      adminStatus.textContent = msg;
+      adminStatus.classList.toggle("error", isError);
+      adminStatus.classList.toggle("success", !isError && Boolean(msg));
+    }
+  }
+
+  function getAdminKey() {
+    let key = sessionStorage.getItem(ADMIN_KEY_KEY) || "";
+    if (!key) {
+      key = window.prompt("Введите admin key") || "";
+      if (key) sessionStorage.setItem(ADMIN_KEY_KEY, key);
+    }
+    return key;
+  }
+
+  async function fetchQuestions() {
+    const key = getAdminKey();
+    if (!key) {
+      setAdminStatus("Admin key не задан", true);
+      return;
+    }
+    setAdminStatus("Загружаем...", false);
+    try {
+      const resp = await fetch("/api/questions", {
+        headers: { "x-admin-key": key }
+      });
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok || data.ok === false) throw new Error(data.error || "Ошибка загрузки");
+      renderQuestions(data.items || []);
+      setAdminStatus("Список обновлен", false);
+    } catch (err) {
+      setAdminStatus(err.message || "Не удалось загрузить вопросы", true);
+    }
+  }
+
+  async function sendAnswer(id, answer) {
+    const key = getAdminKey();
+    if (!key) {
+      setAdminStatus("Admin key не задан", true);
+      return;
+    }
+    setAdminStatus("Отправляем ответ...", false);
+    try {
+      const resp = await fetch(`/api/questions/${id}/reply`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-key": key
+        },
+        body: JSON.stringify({ answer })
+      });
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok || data.ok === false) throw new Error(data.error || "Ошибка отправки ответа");
+      setAdminStatus("Ответ отправлен", false);
+      fetchQuestions();
+    } catch (err) {
+      setAdminStatus(err.message || "Не удалось отправить ответ", true);
+    }
+  }
+
+  function renderQuestions(items) {
+    if (!adminList) return;
+    if (!items.length) {
+      adminList.innerHTML = "<p class='muted'>Вопросов нет</p>";
+      return;
+    }
+    adminList.innerHTML = "";
+    items.forEach((q) => {
+      const card = document.createElement("div");
+      card.className = "admin-card";
+      card.innerHTML = `
+        <h4>#${q.id} — ${q.name}</h4>
+        <div class="admin-meta">Email: ${q.email}${q.company ? " · " + q.company : ""}${q.telegramChatId ? " · chat_id: " + q.telegramChatId : ""}</div>
+        <p>${q.text}</p>
+        <div class="admin-meta">Статус: ${q.status}${q.answeredAt ? " · " + new Date(q.answeredAt).toLocaleString() : ""}</div>
+        <div class="admin-actions">
+          <button class="btn btn-primary btn-sm" data-answer="${q.id}">Ответить</button>
+        </div>
+      `;
+      adminList.appendChild(card);
+    });
+  }
+
+  if (adminMode && adminBtn) {
+    adminBtn.hidden = false;
+  }
+
+  if (adminBtn) {
+    adminBtn.addEventListener("click", () => {
+      openModal(adminModal);
+      fetchQuestions();
+    });
+  }
+
+  if (adminModal) {
+    adminModal.addEventListener("click", (e) => {
+      const target = e.target;
+      if (target instanceof HTMLElement) {
+        if (target.hasAttribute("data-close-admin")) {
+          closeModal(adminModal);
+        }
+        if (target.dataset && target.dataset.answer) {
+          const id = target.dataset.answer;
+          const ans = window.prompt("Введите ответ для пользователя") || "";
+          if (ans.trim()) {
+            sendAnswer(id, ans.trim());
+          }
+        }
+      }
+    });
+  }
+
+  if (adminRefresh) {
+    adminRefresh.addEventListener("click", fetchQuestions);
+  }
+
 
 // Локальный фон-ДНК только внутри калькулятора (вариант из точек)
 (function () {
