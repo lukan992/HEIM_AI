@@ -345,15 +345,71 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-  // Простая обработка формы контакта (без реальной отправки)
+  // Отправка формы контактов на сервер для уведомления в Telegram
+  const contactForm = document.getElementById("contact-form");
+  const contactStatus = document.getElementById("cf-status");
   const cfSubmit = document.getElementById("cf-submit");
-  if (cfSubmit) {
-    cfSubmit.addEventListener("click", () => {
-      const name = (document.getElementById("cf-name") || {}).value || "";
-      const email = (document.getElementById("cf-email") || {}).value || "";
-      console.log("Contact form submit:", { name, email });
-      alert("Спасибо! Мы получили вашу заявку и скоро свяжемся.");
-    });
+  const CONTACT_ENDPOINT = "/api/notify";
+
+  function setContactStatus(message, isError = false) {
+    if (contactStatus) {
+      contactStatus.textContent = message;
+      contactStatus.classList.toggle("error", isError);
+      contactStatus.classList.toggle("success", !isError && Boolean(message));
+    }
+  }
+
+  async function handleContactSubmit(event) {
+    event.preventDefault();
+    if (!contactForm) return;
+
+    const formData = new FormData(contactForm);
+    const payload = {
+      name: (formData.get("name") || "").toString().trim(),
+      email: (formData.get("email") || "").toString().trim(),
+      company: (formData.get("company") || "").toString().trim(),
+      note: (formData.get("note") || "").toString().trim()
+    };
+
+    if (!payload.name || !payload.email) {
+      setContactStatus("Укажите имя и email, чтобы мы могли ответить.", true);
+      return;
+    }
+
+    setContactStatus("Отправляем...", false);
+    if (cfSubmit) {
+      cfSubmit.disabled = true;
+      cfSubmit.classList.add("is-loading");
+    }
+
+    try {
+      const response = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || (data && data.ok === false)) {
+        const errMessage = (data && data.error) || "Не удалось отправить заявку.";
+        throw new Error(errMessage);
+      }
+
+      contactForm.reset();
+      setContactStatus("Готово! Заявка отправлена, мы свяжемся в Telegram/email.", false);
+    } catch (error) {
+      console.error("Contact form submit failed:", error);
+      const msg = (error && error.message) || "Не удалось отправить. Попробуйте позже или напишите в Telegram.";
+      setContactStatus(msg, true);
+    } finally {
+      if (cfSubmit) {
+        cfSubmit.disabled = false;
+        cfSubmit.classList.remove("is-loading");
+      }
+    }
+  }
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", handleContactSubmit);
   }
 
 

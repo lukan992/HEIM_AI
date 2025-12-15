@@ -564,28 +564,29 @@
                 <p class="muted">
                     Можно просто оставить контакты в форме, а мы предложим варианты времени.
                 </p>
-                <form class="form" id="contact-form">
+                <form class="form" id="contact-form" novalidate>
                     <div class="form-grid">
                         <label class="field">
                             <span>Имя</span>
-                            <input type="text" id="cf-name" placeholder="Как к вам обращаться" />
+                            <input type="text" id="cf-name" name="name" autocomplete="name" required placeholder="Как к вам обращаться" />
                         </label>
                         <label class="field">
                             <span>Рабочий email</span>
-                            <input type="email" id="cf-email" placeholder="name@company.com" />
+                            <input type="email" id="cf-email" name="email" autocomplete="email" required placeholder="name@company.com" />
                         </label>
                         <label class="field">
                             <span>Компания</span>
-                            <input type="text" id="cf-company" placeholder="Название компании" />
+                            <input type="text" id="cf-company" name="company" autocomplete="organization" placeholder="Название компании" />
                         </label>
                         <label class="field">
                             <span>Кратко о задаче</span>
-                            <textarea id="cf-note" rows="3" placeholder="Например: хотим разгрузить саппорт и сократить время ответа."></textarea>
+                            <textarea id="cf-note" name="note" rows="3" placeholder="Например: хотим разгрузить саппорт и сократить время ответа."></textarea>
                         </label>
                     </div>
-                    <button type="button" class="btn btn-primary btn-full" id="cf-submit">
+                    <button type="submit" class="btn btn-primary btn-full" id="cf-submit">
                         Отправить заявку
                     </button>
+                    <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
                     <p class="form-note">
                         Отправка формы ни к чему вас не обязывает. Мы вернёмся с предложением формата и времени созвона.
                     </p>

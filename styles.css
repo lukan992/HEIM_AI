@@ -411,20 +411,20 @@ body.nav-open {
 }
 
 @media (max-width: 720px) {
-    .hero-status {
-        width: 100%;
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 10px;
+    .hero-status--large {
+        background: none;
+        border: none;
+        box-shadow: none;
     }
 
     .hero-status--large {
+        width: 60%;
         font-size: 16px;
     }
 
     .hero-status--chips span {
         width: 100%;
-        text-align: left;
+        text-align: center;
         min-width: 0;
     }
 }
@@ -757,6 +757,21 @@ body.nav-open {
     font-size: 12px;
     color: var(--text-muted);
     margin: 6px 0 0;
+}
+
+.form-status {
+    min-height: 18px;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 6px 0 0;
+}
+
+.form-status.success {
+    color: var(--accent);
+}
+
+.form-status.error {
+    color: #ff7875;
 }
 
 .calc-results {
@@ -1368,6 +1383,15 @@ body.nav-open {
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 14px;
+}
+
+#contact-form .btn-full[disabled] {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+#contact-form .form-status {
+    margin-top: 8px;
 }
 
 #contact-form .form-note {
